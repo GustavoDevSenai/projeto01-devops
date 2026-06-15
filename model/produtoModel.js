@@ -20,6 +20,8 @@ async function listar() {
     const [produtos] = await db.query('SELECT * FROM produtos')
 
     return produtos
+
+    //listar produtos
 }
 
 module.exports = {
