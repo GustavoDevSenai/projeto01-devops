@@ -5,6 +5,7 @@ async function listar(req,res) {
     try {
         const produtos = await ProdutoModel.listar()
         res.json(produtos)
+        
     } 
     catch (error) {
         console.log(error)
