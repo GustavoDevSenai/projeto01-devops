@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form id="formProduto">
+
+            <input id="nome" type="text" placeholder="Digite o nome do produto...">
+
+            <input id="preco" type="text" placeholder="Digite o preco do produto...">
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+
+    <script>
+        
+
+        const form = document.getElementById("formProduto");
+
+        form.addEventListener("submit", async(e)=>{
+            e.preventDefault()
+
+            const produto = {
+                nome: document.getElementById("nome").value,
+                preco: document.getElementById("preco").value
+            }
+
+            try {
+                const resposta = await fetch("http://localhost:3001/produtos",{
+                    method:"POST",
+                    headers: {
+                        "Content-type":"application/json"
+                    },
+                    body:JSON.stringify(produto)
+                })
+
+                const dados = await resposta.json()
+
+                alert("Produto cadastrado com sucesso")
+
+                form.reset()
+            } catch (error) {
+                alert("erro!")
+                console.log(error)
+            }
+
+
+        })
+
+        
+
+    </script>
+</body>
+</html>
